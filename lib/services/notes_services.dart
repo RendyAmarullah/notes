@@ -9,11 +9,19 @@ class NoteService {
       print('Snapshot data:${event.size}');
       if (event != null) {
         Map<dynamic, dynamic> values = event as Map<dynamic, dynamic>;
-        values.forEach((key, value) { 
+        values.forEach((key, value) {
           items[key] = value['title'] as String;
         });
       }
       return items;
     });
   }
+
+  void addNoteList(String title, String description) {
+    _database.doc().set({
+      'title': title,
+      'description': description,
+    });
+  }
+  
 }
